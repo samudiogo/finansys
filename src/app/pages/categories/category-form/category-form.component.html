@@ -14,17 +14,17 @@
 <div class="row mb-4">
   <div class="col-md">
     <h1 class="h2 border-left pl-2">
-      Categories
+      Categories {{ currentAction }}
     </h1>
   </div>
   <div class="col-md">
-    <a routerLink="new" class="btn btn-light float-right">
+    <a routerLink="/categories" class="btn btn-light float-right">
       << Back
     </a> 
   </div> 
 </div>
 
-<form>
+<form [formGroup]="categoryForm" >
   <div class="card">
     <div class="card-header">Information about category</div>
     <div class="card-body">
