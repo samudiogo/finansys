@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterContentChecked } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, toArray } from 'rxjs/operators';
 import toastr from 'toastr';
 import { Category } from '../shared/category.model';
 import { CategoryService } from '../shared/category.service';
@@ -35,6 +35,14 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
 
   ngAfterContentChecked(): void {
     this.setPageTitle();
+  }
+
+  submitForm(){
+    if (this.currentAction === 'new') {
+      this.createCategory();
+    } else  {
+      this.updateCategory();
+    }
   }
 
   private setCurrentAction() {
@@ -73,6 +81,44 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
     } else {
       const categoryName = this.category.name || '';
       this.pageTitle = `Editing category: ${categoryName}`;
+    }
+  }
+
+  private createCategory() {
+    const category = Object.assign(new Category(), this.categoryForm.value);
+    this.categoryService.create(category)
+    .subscribe(
+      category => this.actionsForSuccess(category),
+      error => this.actionsForError(error)
+    );
+  }
+
+  private updateCategory() {
+    const category = Object.assign(new Category(), this.categoryForm.value);
+    this.categoryService.update(category)
+    .subscribe(
+      category => this.actionsForSuccess(category),
+      error => this.actionsForError(error)
+    );
+  }
+
+  private actionsForSuccess(category: Category){
+    toastr.success('successfuly saved');
+
+    // redirec/reload component pages
+    this.router.navigateByUrl('categories',{skipLocationChange: true}).then(
+      () => this.router.navigate(['categories',category.id, 'edit'])
+    );
+  }
+
+  private actionsForError(error){
+    toastr.error('ops, something got wrong');
+    this.submittingForm = false;
+
+    if(error.status === 422) {
+      this.serverErrorMessages = JSON.parse(error._body).errors;
+    } else {
+      this.serverErrorMessages = ['Ops this server is busy or something got wrong.. try again later!'];
     }
   }
 
