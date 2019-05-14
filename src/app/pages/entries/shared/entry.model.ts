@@ -20,6 +20,6 @@ export class Entry {
     };
 
     get paidText(): string {
-        return this.paid ? 'paid' : 'to pay';
+        return this.paid ? 'paid' : 'pending';
     }
 }
