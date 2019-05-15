@@ -1,7 +1,8 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { Validators } from '@angular/forms';
 
-import { BaseResourceFormComponent } from '../../../shared/components/base-resource-form.component';
+import { BaseResourceFormComponent } from '../../../shared/components/base-resource-form.component/base-resource-form.component';
+
 
 import { Entry } from '../shared/entry.model';
 import { EntryService } from '../shared/entry.service';

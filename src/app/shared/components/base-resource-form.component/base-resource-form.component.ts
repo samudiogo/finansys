@@ -4,8 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import toastr from 'toastr';
 
-import { BaseResourceModel } from '../../shared/models/base-resource.model';
-import { BaseResourceService } from '../../shared/services/base-resource.service';
+import { BaseResourceModel } from '../../../shared/models/base-resource.model';
+import { BaseResourceService } from '../../../shared/services/base-resource.service';
 
 export abstract class BaseResourceFormComponent<T extends BaseResourceModel> implements OnInit, AfterContentChecked {
 
