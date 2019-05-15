@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Category } from '../shared/category.model';
 import { CategoryService } from '../shared/category.service';
+
 import { BaseResourceListComponent } from '../../../shared/components/base-resource-list.component/base-resource-list.component';
 
 @Component({
@@ -11,7 +12,7 @@ import { BaseResourceListComponent } from '../../../shared/components/base-resou
 export class CategoryListComponent extends BaseResourceListComponent<Category>  {
 
   constructor(private categoryService: CategoryService) { 
-    super(categoryService, []);
+    super(categoryService);
   }
 
 }

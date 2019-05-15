@@ -3,10 +3,9 @@ import { BaseResourceModel } from '../../models/base-resource.model';
 import { BaseResourceService } from '../../services/base-resource.service';
 
 export abstract class BaseResourceListComponent<T extends BaseResourceModel> implements OnInit {
-
+  public resources: T[] = [];
   constructor(
-    protected resourceService: BaseResourceService<T>,
-    public resources: T[]
+    protected resourceService: BaseResourceService<T>
   ) { }
 
   ngOnInit() {
