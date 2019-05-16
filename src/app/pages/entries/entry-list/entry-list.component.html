@@ -1,17 +1,8 @@
 <app-bread-crumb
 [items]="[{text: 'Entries'}]">
 </app-bread-crumb>
-
-<div class="row mb-4">
-  <div class="col-md">
-    <h1 class="h2 border-left pl-2">
-      Entries
-    </h1>
-  </div>
-  <div class="col-md">
-    <a routerLink="new" class="btn btn-success float-right">+ new entry</a>
-  </div>
-</div>
+<app-page-header pageTitle="Entries" buttonLink="new" buttonClass="btn-success" buttonText="+ new entry" >
+</app-page-header>
 
 <table class="table table-hover">
   <thead>

@@ -2,18 +2,8 @@
 [items]="[{text: 'Categories', link: '/categories'},{text: pageTitle}]">
 </app-bread-crumb>
 
-<div class="row mb-4">
-  <div class="col-md">
-    <h1 class="h2 border-left pl-2">
-      {{ pageTitle }}
-    </h1>
-  </div>
-  <div class="col-md">
-    <a routerLink="/categories" class="btn btn-light float-right">
-      << Back
-    </a>
-  </div>
-</div>
+<app-page-header [pageTitle]="pageTitle" buttonLink="/categories" buttonClass="btn-light" buttonText=" << back" >
+</app-page-header>
 
 <form [formGroup]="resourceForm" (submit)="submitForm()" >
   <div class="alert alert-danger mb-4" *ngIf="serverErrorMessages">

@@ -1,18 +1,9 @@
 <app-bread-crumb
 [items]="[{text: 'Entries', link: '/entries'},{text: pageTitle}]">
 </app-bread-crumb>
+<app-page-header [pageTitle]="pageTitle" buttonLink="/entries" buttonClass="btn-light" buttonText=" << back" >
+  </app-page-header>
 
-<div class="row mb-4">
-  <div class="col-md-10">
-    <h1 class="h2 border-left pl-2">
-      {{ pageTitle }}
-    </h1>
-  </div>
-  <div class="col-md">
-    <a routerLink="/entries" class="btn btn-light float-right">
-      Back </a>
-  </div>
-</div>
 <div class="alert alert-danger mb-4" *ngIf="serverErrorMessages">
   <ul>
     <li *ngFor="let error of serverErrorMessages">
