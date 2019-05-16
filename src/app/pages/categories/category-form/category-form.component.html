@@ -1,15 +1,6 @@
-<nav class="mb-5">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item">
-      <a routerLink="/">Home</a>
-    </li>
-    <li class="breadcrumb-item">
-      <a routerLink="/categories">Categories</a>
-    </li>
-    <li class="breadcrumb-item active"> {{ pageTitle }}</li>
-  </ol>
-</nav>
-
+<app-bread-crumb
+[items]="[{text: 'Categories', link: '/categories'},{text: pageTitle}]">
+</app-bread-crumb>
 
 <div class="row mb-4">
   <div class="col-md">
@@ -20,8 +11,8 @@
   <div class="col-md">
     <a routerLink="/categories" class="btn btn-light float-right">
       << Back
-    </a> 
-  </div> 
+    </a>
+  </div>
 </div>
 
 <form [formGroup]="resourceForm" (submit)="submitForm()" >
