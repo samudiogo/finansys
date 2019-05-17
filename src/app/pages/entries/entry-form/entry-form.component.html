@@ -1,16 +1,9 @@
-<app-bread-crumb
-[items]="[{text: 'Entries', link: '/entries'},{text: pageTitle}]">
+<app-bread-crumb [items]="[{text: 'Entries', link: '/entries'},{text: pageTitle}]">
 </app-bread-crumb>
-<app-page-header [pageTitle]="pageTitle" buttonLink="/entries" buttonClass="btn-light" buttonText=" << back" >
-  </app-page-header>
+<app-page-header [pageTitle]="pageTitle" buttonLink="/entries" buttonClass="btn-light" buttonText=" << back">
+</app-page-header>
 
-<div class="alert alert-danger mb-4" *ngIf="serverErrorMessages">
-  <ul>
-    <li *ngFor="let error of serverErrorMessages">
-      {{ error }}
-    </li>
-  </ul>
-</div>
+<app-server-error-message [serverErrorMessages]="serverErrorMessages"></app-server-error-message>
 <form [formGroup]="resourceForm" (submit)="submitForm()">
   <div class="card">
     <div class="card-header">Information about entry</div>
@@ -26,6 +19,7 @@
               {{ option.text }}
             </option>
           </select>
+          <app-form-field-error [form-control]="resourceForm.get('type')"></app-form-field-error>
           <div class="text-danger" *ngIf="resourceForm.get('type').invalid && resourceForm.get('type').touched">
             <div *ngIf="resourceForm.get('type').errors.required">Type is required</div>
           </div>
@@ -35,10 +29,7 @@
         <div class="form-group col-md-6">
           <label for="name">Entry:</label>
           <input type="text" class="form-control" formControlName="name" id="name">
-          <div class="text-danger" *ngIf="resourceForm.get('name').invalid && resourceForm.get('name').touched">
-            <div *ngIf="resourceForm.get('name').errors.required">Name is required</div>
-            <div *ngIf="resourceForm.get('name').errors.minlength">Name should contains at least 2 characters</div>
-          </div>
+          <app-form-field-error [form-control]="resourceForm.get('name')"></app-form-field-error>
         </div>
 
         <!-- amount -->
@@ -52,9 +43,7 @@
               formControlName="amount">
           </div>
 
-          <div class="text-danger" *ngIf="resourceForm.get('amount').invalid && resourceForm.get('amount').touched">
-            <div *ngIf="resourceForm.get('amount').errors.required">Name is required</div>
-          </div>
+          <app-form-field-error [form-control]="resourceForm.get('amount')"></app-form-field-error>
         </div>
 
         <!-- date -->
@@ -63,9 +52,7 @@
           <p-calendar id="date" formControlName="date" inputStyleClass="form-control" dataType="string"
             dateFormat="dd/mm/yy" [locale]="ptBR" [showButtonBar]="true">
           </p-calendar>
-          <div class="text-danger" *ngIf="resourceForm.get('date').invalid && resourceForm.get('date').touched">
-            <div *ngIf="resourceForm.get('date').errors.required">Name is required</div>
-          </div>
+          <app-form-field-error [form-control]="resourceForm.get('date')"></app-form-field-error>
         </div>
       </div>
 
@@ -73,8 +60,8 @@
         <div class="form-group col-md-2">
           <label for="paid">Payment status</label>
           <div class="btn-group">
-            <label (click)="resourceForm.get('paid').setValue(true)" [class.active]="resourceForm.get('paid').value === true"
-              class="btn btn-outline-info">
+            <label (click)="resourceForm.get('paid').setValue(true)"
+              [class.active]="resourceForm.get('paid').value === true" class="btn btn-outline-info">
               Paid
             </label>
             <label (click)="resourceForm.get('paid').setValue(false)"
@@ -82,6 +69,7 @@
               Pending
             </label>
           </div>
+          <app-form-field-error [form-control]="resourceForm.get('paid')"></app-form-field-error>
         </div>
 
         <!-- Category -->
@@ -92,13 +80,12 @@
               {{ category.name }}
             </option>
           </select>
-          <div class="text-danger" *ngIf="resourceForm.get('categoryId').invalid && resourceForm.get('categoryId').touched">
-            <div *ngIf="resourceForm.get('categoryId').errors.required">Category is required</div>
-          </div>
+          <app-form-field-error [form-control]="resourceForm.get('categoryId')"></app-form-field-error>
         </div>
         <div class="form-group col-md">
           <label for="description">Description:</label>
           <input type="text" class="form-control" formControlName="description" id="description">
+          <app-form-field-error [form-control]="resourceForm.get('description')"></app-form-field-error>
         </div>
       </div>
     </div>
