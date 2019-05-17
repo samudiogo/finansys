@@ -1,5 +1,6 @@
 # Finansys
 
+[![Build status](https://dev.azure.com/samueldiogo/Finansys/_apis/build/status/Finansys-CI)](https://dev.azure.com/samueldiogo/Finansys/_build/latest?definitionId=7)
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
 
 ## Development server
